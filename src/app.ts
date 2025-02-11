@@ -13,26 +13,15 @@ const app = express();
 
 app.use(express.json());
 
-if (
-  process.env.CLIENT_URL != null &&
-  process.env.CLIENT_URL2 != null &&
-  process.env.SERVEUR_URL != null &&
-  process.env.CLIENT_URL_NETWORK != null
-) {
-  app.use(
-    cors({
-      origin: [
-        process.env.CLIENT_URL,
-        process.env.CLIENT_URL2,
-        process.env.SERVEUR_URL,
-        process.env.CLIENT_URL_NETWORK,
-      ],
-    }),
-  );
-} else {
-  console.error("Démarrage refusé: variables d'environnement cors manquantes");
-  process.exit(1);
-}
+
+app.use(
+  cors({
+    origin: [
+      "*",
+    ],
+  }),
+);
+
 
 //génère un token pour le serveur
 originResquet.setTokenServeur();
