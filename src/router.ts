@@ -35,8 +35,8 @@ const home: RequestHandler = async (req, res, next) => {
   }
 };
 //home teste
-router.post(
-  "/",
+router.get(
+  "/api",
   home,
 );
 
