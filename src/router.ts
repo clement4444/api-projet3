@@ -15,8 +15,11 @@ import originResquet from "./modules/originResquet/originResquet";
 import platformeActions from "./modules/platforme/platformeActions";
 import serieActions from "./modules/serie/serieActions";
 import utilisateurActions from "./modules/utilisateur/utilisateurActions";
+import { env } from "node:process";
 
 const router = express.Router();
+
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
 const home: RequestHandler = async (req, res, next) => {
   try {
@@ -29,6 +32,13 @@ const home: RequestHandler = async (req, res, next) => {
         mail: "fefef@gmail.com",
         motDePasse: "fefef",
       },
+      env: {
+        DB_HOST: DB_HOST,
+        DB_PORT: DB_PORT,
+        DB_USER: DB_USER,
+        DB_PASSWORD: DB_PASSWORD,
+        DB_NAME: DB_NAME,
+      }
     });
   } catch (err) {
     next(err);
