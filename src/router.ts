@@ -1,4 +1,5 @@
 import express from "express";
+import type { RequestHandler } from "express";
 import articleActions from "./modules/article/articleActions";
 import carousselActions from "./modules/caroussel/carousselActions";
 import categorieActions from "./modules/categorie/categorieActions";
@@ -16,6 +17,28 @@ import serieActions from "./modules/serie/serieActions";
 import utilisateurActions from "./modules/utilisateur/utilisateurActions";
 
 const router = express.Router();
+
+const home: RequestHandler = async (req, res, next) => {
+  try {
+
+    res.status(201).send({
+      message: "Serie crée avec succès",
+      sucssces: true,
+      data: {
+        nom: "test",
+        mail: "fefef@gmail.com",
+        motDePasse: "fefef",
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+//home teste
+router.post(
+  "/",
+  home,
+);
 
 //route utilisateur
 //inscription

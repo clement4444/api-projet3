@@ -1,12 +1,13 @@
 {
-  "name": "@js-monorepo/server",
+  "name": "cinestrem",
   "scripts": {
     "check-types": "tsc --noEmit",
     "dev": "tsx watch --clear-screen=false ./src/main",
     "db:migrate": "tsx ./bin/migrate",
     "db:seed": "tsx ./bin/seed",
-    "build": "tsc ./src/main --outDir ./dist --esModuleInterop",
-    "start": "node dist/main.js",
+    "build": "tsc --outDir ./dist --esModuleInterop && npm run copy-public",
+    "copy-public": "cp -r ./src/public ./dist/public",
+    "start": "node dist/src/main.js",
     "test": "jest --verbose",
     "sleep": "sleep 3",
     "new:admin": "concurrently \"npm run dev\" \"npm run sleep && tsx ./bin/newAdmin.ts\""
