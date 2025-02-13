@@ -17,12 +17,17 @@ import serieActions from "./modules/serie/serieActions";
 import utilisateurActions from "./modules/utilisateur/utilisateurActions";
 import { env } from "node:process";
 
+import databaseClient from "../database/client";
+import type { Result, Rows } from "../database/client";
+
 const router = express.Router();
 
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
 const home: RequestHandler = async (req, res, next) => {
   try {
+    const query = "SELECT * FROM categorie;";
+    const [rows] = await databaseClient.query(query);
 
     res.status(201).send({
       message: "Serie crée avec succès",
@@ -38,9 +43,16 @@ const home: RequestHandler = async (req, res, next) => {
         DB_USER: DB_USER,
         DB_PASSWORD: DB_PASSWORD,
         DB_NAME: DB_NAME,
-      }
+      },
+      reponse: rows,
     });
-  } catch (err) {
+  } catch (err: any) {
+    // En cas d'erreur, renvoie une erreur avec un message approprié
+    res.status(500).send({
+      message: "Erreur lors de la connexion à la base de données",
+      success: false,
+      error: err.message,
+    });
     next(err);
   }
 };
