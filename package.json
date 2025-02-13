@@ -12,6 +12,7 @@
     "new:admin": "concurrently \"npm run dev\" \"npm run sleep && tsx ./bin/newAdmin.ts\""
   },
   "compilerOptions": {
+    "esModuleInterop": true,
     "outDir": "dist",
     "module": "CommonJS",
     "target": "ES6"
