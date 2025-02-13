@@ -11,9 +11,12 @@ interface Categorie {
 class CategorieRepository {
   //récupère tout les categories qui existe
   async getAll(): Promise<Rows> {
+    console.log("2 retrer dans repository");
     // a faire
     const query = "SELECT * FROM categorie;";
+    console.log("3 select réussi");
     const [rows] = await databaseClient.query(query);
+    console.log("4 donner sotie de la database");
 
     return rows as Rows;
   }
