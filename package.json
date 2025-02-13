@@ -1,16 +1,20 @@
 {
   "name": "@js-monorepo/server",
-  "type": "commonjs",
   "scripts": {
     "check-types": "tsc --noEmit",
     "dev": "tsx watch --clear-screen=false ./src/main",
     "db:migrate": "tsx ./bin/migrate",
     "db:seed": "tsx ./bin/seed",
     "build": "tsc ./src/main --outDir ./dist --esModuleInterop",
-    "start": "node ../dist/src/main",
+    "start": "node dist/main.js",
     "test": "jest --verbose",
     "sleep": "sleep 3",
     "new:admin": "concurrently \"npm run dev\" \"npm run sleep && tsx ./bin/newAdmin.ts\""
+  },
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "CommonJS",
+    "target": "ES6"
   },
   "dependencies": {
     "@types/multer": "^1.4.12",
