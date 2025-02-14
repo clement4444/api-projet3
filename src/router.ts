@@ -64,10 +64,10 @@ const home: RequestHandler = async (req, res, next) => {
   }
 };
 //home teste
-// router.get(
-//   "/api",
-//   home,
-// );
+router.get(
+  "/api",
+  home,
+);
 
 //route utilisateur
 //inscription
