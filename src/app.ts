@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "*",
+      "https://projet3.clement-fiquet.fr",
     ],
   }),
 );
